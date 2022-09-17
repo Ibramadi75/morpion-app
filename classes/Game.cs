@@ -1,5 +1,4 @@
 namespace MyApp{
-    
     class Game{
         public static bool playerTurn = true;
         public static bool quitGame = false;
@@ -60,18 +59,36 @@ namespace MyApp{
             playerTurn = false;
         }
         public static int[] AskPlayer(){
-            int x;
-            int y;
+            string linePlayedString;
+            int linePlayedInt;
+            string columnPlayedString;
+            int columnPlayedInt;
             int[] result = new int[2];
 
             do{
+                int Askedline = 0;
                 Console.WriteLine("Dans quelle ligne souhaitez vous jouer ?");
-                x = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Dans quelle colonne souhaitez vous jouer ?");
-                y = Convert.ToInt32(Console.ReadLine());
-            }while(x > 3 || x <= 0 || y > 3 || y <= 0); // si les coordonnées souhaité ne sont pas valides
+                do{
+                    if(Askedline > 0){
+                        Console.WriteLine("Entrée incorrect.. Réessayez");
+                    }
+                    linePlayedString = MyFunc.CslRead();;
+                    Askedline++;
+                }while(!int.TryParse(linePlayedString, out _));
+                linePlayedInt = Convert.ToInt32(linePlayedString);
 
-            return Board.SlotsStates(x, y);
+                int AskedColumn = 0;
+                Console.WriteLine("Dans quelle colonne souhaitez vous jouer ?");
+                do{
+                    if(AskedColumn > 0){
+                        Console.WriteLine("Entrée incorrect.. Réessayez");
+                    }
+                    columnPlayedString = MyFunc.CslRead();
+                }while(!int.TryParse(columnPlayedString, out _));
+                columnPlayedInt = Convert.ToInt32(columnPlayedString);
+            }while(linePlayedInt > 3 || linePlayedInt <= 0 || columnPlayedInt > 3 || columnPlayedInt <= 0); // si les coordonnées souhaité ne sont pas valides
+
+            return Board.SlotsStates(linePlayedInt, columnPlayedInt);
         }
 
         public static void ComputerTurn()

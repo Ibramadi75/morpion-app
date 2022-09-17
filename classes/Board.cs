@@ -51,8 +51,8 @@ namespace MyApp{
             int[][] slotToCheck = new int[4][]
             {
                 new int[2]{0,0},
-                new int[2]{0,2},
-                new int[2]{1,1},
+                new int[2]{1,0},
+                new int[2]{2,0},
                 new int[2]{2,1},
             };
             foreach(int[] value in slotToCheck){

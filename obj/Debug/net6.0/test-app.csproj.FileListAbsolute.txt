@@ -1,0 +1,15 @@
+/Users/ibrahimmadi/Documents/Développement/test-app/bin/Debug/net6.0/test-app
+/Users/ibrahimmadi/Documents/Développement/test-app/bin/Debug/net6.0/test-app.deps.json
+/Users/ibrahimmadi/Documents/Développement/test-app/bin/Debug/net6.0/test-app.runtimeconfig.json
+/Users/ibrahimmadi/Documents/Développement/test-app/bin/Debug/net6.0/test-app.dll
+/Users/ibrahimmadi/Documents/Développement/test-app/bin/Debug/net6.0/test-app.pdb
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.csproj.AssemblyReference.cache
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.AssemblyInfoInputs.cache
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.AssemblyInfo.cs
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.csproj.CoreCompileInputs.cache
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.dll
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/refint/test-app.dll
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.pdb
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/test-app.genruntimeconfig.cache
+/Users/ibrahimmadi/Documents/Développement/test-app/obj/Debug/net6.0/ref/test-app.dll

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ibrahimmadi/Documents/Développement/test-app/test-app.csproj",
+      "projectUniqueName": "/Users/ibrahimmadi/Documents/Développement/programmes C#/test-app/test-app.csproj",
       "projectName": "test-app",
-      "projectPath": "/Users/ibrahimmadi/Documents/Développement/test-app/test-app.csproj",
+      "projectPath": "/Users/ibrahimmadi/Documents/Développement/programmes C#/test-app/test-app.csproj",
       "packagesPath": "/Users/ibrahimmadi/.nuget/packages/",
-      "outputPath": "/Users/ibrahimmadi/Documents/Développement/test-app/obj/",
+      "outputPath": "/Users/ibrahimmadi/Documents/Développement/programmes C#/test-app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/ibrahimmadi/.nuget/NuGet/NuGet.Config"

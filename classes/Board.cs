@@ -57,9 +57,9 @@ namespace MyApp{
             };
             foreach(int[] value in slotToCheck){
                 if(board[value[0], value[1]] == symbol){
-                    switch (value[0]){
+                    switch (value[1]){
                         case 0: // si on est à la colonne 0
-                            switch (value[1]){
+                            switch (value[0]){
                                 case 0: // si on est à la ligne 0
                                     if(board[value[0]+1, value[1]] == symbol && board[value[0]+2, value[1]] == symbol){
                                         return true;
@@ -70,13 +70,35 @@ namespace MyApp{
                                     }
                                     break;
                                     case 1: // si on est à la ligne 1
-                                    if(board[value[0]+1, value[1]] == symbol && board[value[0]-1, value[1]] == symbol){
+                                    if(board[value[0], value[1]+1] == symbol && board[value[0], value[1]+2] == symbol){
                                         return true;
                                     }
-                                    else if(board[value[0], value[1]+1] == symbol && board[value[0], value[1]+2] == symbol){
+                                    break;
+                                    case 2: // si on est à la ligne 2
+                                    // diagonale bas gauche vers haut droite
+                                    if(board[value[0]-1, value[1]+1] == symbol && board[value[0]-2, value[1]+2] == symbol){
                                         return true;
                                     }
+                                    //ligne bas gauche vers bas droit
+                                    if(board[value[0], value[1]+1] == symbol && board[value[0], value[1]+2] == symbol){
+                                        return true;
+                                    }
+                                    break;
                                 break;
+                            }
+                        break;
+                        case 1: // si on est à la colonne 1
+                            if(value[0] == 2){
+                                if(board[value[0]-2, value[1]] == symbol && board[value[0]-1, value[1]] == symbol){
+                                    return true;
+                                }
+                            }
+                        break;
+                        case 2: // si on est à la colonne 2
+                            if(value[0] == 2){
+                                if(board[value[0]-2, value[1]] == symbol && board[value[0]-1, value[1]] == symbol){
+                                    return true;
+                                }
                             }
                         break;
                     }

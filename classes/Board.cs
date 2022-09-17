@@ -4,11 +4,11 @@ namespace MyApp{
         public static int[] SlotsStates(int x, int y)
         {
             int[] result = new int[2];
-            if (board[x-1, y-1] == ' '){
+            if (board[x, y] == ' '){
                 result[0] = x;
                 result[1] = y;
             }else{
-                if (board[x-1, y-1] == 'X')
+                if (board[x, y] == 'X')
                 {
                     Console.WriteLine("Vous avez déjà joué ici..");
                     return Game.AskPlayer();
@@ -29,23 +29,38 @@ namespace MyApp{
                 return false;
             }
         }
-        public static void RenderBoard(){
-            string boardString = "";
+        public static void RenderBoard(int a = 4, int b = 4){ // we put optional parameters that will be used to coloring the background of selected slot, here we put default value out of the board in order to do not color the background when we just want to show the board
+            // string boardString = "";
+            Console.Clear();
+            Console.Out.NewLine = "";
             for(int i = 0; i < 3; i++){
-                boardString += ($"     |     |{Environment.NewLine}");
+                Console.WriteLine(($"     |     |{Environment.NewLine}"));
                 for(int j = 0; j < 3; j++){
                     if(j < 2){
-                        boardString += $"  {board[i,j]}  |";
+                        if(i == a && j == b){
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"  {board[i,j]}  ");
+                            Console.ResetColor();
+                        }else{
+                            Console.WriteLine($"  {board[i,j]}  ");
+                        }
+                        Console.WriteLine("|");
                     }else{
-                        boardString += $"  {board[i,j]}  ";
+                        if(i == a && j == b){
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"  {board[i,j]}  ");
+                            Console.ResetColor();
+                        }else{
+                            Console.WriteLine($"  {board[i,j]}  ");
+                        }
                     }
                 }
-                boardString += $"{Environment.NewLine}     |     |";
+                Console.WriteLine($"{Environment.NewLine}     |     |");
                 if(i < 2){
-                    boardString += $"{Environment.NewLine}-----+-----+-----{Environment.NewLine}";
+                    Console.WriteLine($"{Environment.NewLine}-----+-----+-----{Environment.NewLine}");
                 }
             }
-            Console.WriteLine(boardString);
+            Console.Out.NewLine = Environment.NewLine;
         }
         public static bool CheckBoard(char symbol){
             int[][] slotToCheck = new int[4][]

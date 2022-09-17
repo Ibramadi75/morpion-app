@@ -51,44 +51,49 @@ namespace MyApp{
             int[] currentTurn = AskPlayer();
             int x = currentTurn[0];
             int y = currentTurn[1];
-            Board.board[x-1, y-1] = 'X';
+            Board.board[x, y] = 'X';
             Board.RenderBoard();
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Cliquez sur une touche pour continuer");
             Console.ReadKey();
 
             playerTurn = false;
         }
         public static int[] AskPlayer(){
-            string linePlayedString;
-            int linePlayedInt;
-            string columnPlayedString;
-            int columnPlayedInt;
-            int[] result = new int[2];
-
+            int y = 0;
+            int x = 0;
             do{
-                int Askedline = 0;
-                Console.WriteLine("Dans quelle ligne souhaitez vous jouer ?");
-                do{
-                    if(Askedline > 0){
-                        Console.WriteLine("Entrée incorrect.. Réessayez");
-                    }
-                    linePlayedString = MyFunc.CslRead();;
-                    Askedline++;
-                }while(!int.TryParse(linePlayedString, out _));
-                linePlayedInt = Convert.ToInt32(linePlayedString);
+                Console.WriteLine("Appuyer sur [entrer] pour valider");
+                GetKey:
+                Console.WriteLine("x: " + x + " y: " + y);
+                Board.RenderBoard(y, x);
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        y--;
+                        goto GetKey;
+                    case ConsoleKey.DownArrow:
+                        y++;
+                        goto GetKey;
+                    case ConsoleKey.LeftArrow:
+                        x--;
+                        goto GetKey;
+                    case ConsoleKey.RightArrow:
+                        x++;
+                        goto GetKey;
+                    case ConsoleKey.Enter:
+                        // Console.Clear();
+                        break;
+                    case ConsoleKey.Escape:
+                        quitGame = true;
+                        break;
+                    default:
+                        goto GetKey
+                    ;
+                }
+            }while(!Board.isSlotsAvailable(y, x));
 
-                int AskedColumn = 0;
-                Console.WriteLine("Dans quelle colonne souhaitez vous jouer ?");
-                do{
-                    if(AskedColumn > 0){
-                        Console.WriteLine("Entrée incorrect.. Réessayez");
-                    }
-                    columnPlayedString = MyFunc.CslRead();
-                }while(!int.TryParse(columnPlayedString, out _));
-                columnPlayedInt = Convert.ToInt32(columnPlayedString);
-            }while(linePlayedInt > 3 || linePlayedInt <= 0 || columnPlayedInt > 3 || columnPlayedInt <= 0); // si les coordonnées souhaité ne sont pas valides
-
-            return Board.SlotsStates(linePlayedInt, columnPlayedInt);
+            return Board.SlotsStates(y, x);
         }
 
         public static void ComputerTurn()

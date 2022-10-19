@@ -1,38 +1,49 @@
-namespace MyApp{
-    class Game{
+namespace MyApp
+{
+    class Game
+    {
         public static bool playerTurn = true;
         public static bool quitGame = false;
-        
-        public static void LaunchGame(){
-            Board.board = new char[3 ,3]
+        public static int gameMode = 0;
+
+        public static void LaunchGame()
+        {
+            Board.board = new char[3, 3]
             {
                 { ' ', ' ', ' '},
                 { ' ', ' ', ' '},
                 { ' ', ' ', ' '},
             };
-            while(!quitGame)
+            while (!quitGame)
             {
-                if(!Board.CheckBoard('X') && !Board.CheckBoard('Y')){
-                    if(playerTurn){
-                        int[] aa = new int[] {0, 1};
-                        PlayerTurn();
-                    }else{
-                        ComputerTurn();
+                do
+                {
+                    Console.WriteLine("1 : Local 2 players" + Environment.NewLine + "2 : Playing against computer");
+                    switch (Console.ReadKey(true).Key)
+                    {
+                        case ConsoleKey.D1:
+                            gameMode = 1;
+                            break;
+                        case ConsoleKey.D2:
+                            gameMode = 2;
+                            break;
+                        default:
+                            gameMode = 0;
+                            break;
                     }
+                }while (gameMode == 0);
+
+                if (gameMode == 1){
+                    VersusPlayer();
                 }else{
-                    if(Board.CheckBoard('X')){
-                        Console.WriteLine("Joueur a gagné");
-                    }else{
-                        Console.WriteLine("Ordinateur a gagné");
-                    }
-                    quitGame = true;
+                    VersusComputer();
                 }
             }
-            if(!quitGame)
+            if (!quitGame)
             {
                 Console.WriteLine("Appuyer sur [escape] pour quitter");
 
-                GetKey:
+            GetKey:
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.Escape:
@@ -44,6 +55,36 @@ namespace MyApp{
                     ;
                 }
             }
+        }
+
+        public static void VersusComputer(){
+            if (!Board.CheckBoard('X') && !Board.CheckBoard('Y'))
+                {
+                    if (playerTurn)
+                    {
+                        int[] aa = new int[] { 0, 1 };
+                        PlayerTurn();
+                    }
+                    else
+                    {
+                        ComputerTurn();
+                    }
+                }
+                else
+                {
+                    if (Board.CheckBoard('X'))
+                    {
+                        Console.WriteLine("Joueur a gagné");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ordinateur a gagné");
+                    }
+                    quitGame = true;
+                }
+        }
+        public static void VersusPlayer(){
+
         }
         public static void PlayerTurn()
         {
@@ -59,12 +100,14 @@ namespace MyApp{
 
             playerTurn = false;
         }
-        public static int[] AskPlayer(){
+        public static int[] AskPlayer()
+        {
             int y = 0;
             int x = 0;
-            do{
+            do
+            {
                 Console.WriteLine("Appuyer sur [entrer] pour valider");
-                GetKey:
+            GetKey:
                 Console.WriteLine("x: " + x + " y: " + y);
                 Board.RenderBoard(y, x);
                 switch (Console.ReadKey(true).Key)
@@ -91,7 +134,7 @@ namespace MyApp{
                         goto GetKey
                     ;
                 }
-            }while(!Board.isSlotsAvailable(y, x));
+            } while (!Board.isSlotsAvailable(y, x));
 
             return Board.SlotsStates(y, x);
         }
@@ -101,13 +144,14 @@ namespace MyApp{
             Random aleatoire = new Random();
             int x;
             int y;
-            do{
+            do
+            {
                 x = aleatoire.Next(3);
                 y = aleatoire.Next(3);
-            }while(!Board.isSlotsAvailable(x, y));
-            
-            
-            Board.board [x, y] = 'O';
+            } while (!Board.isSlotsAvailable(x, y));
+
+
+            Board.board[x, y] = 'O';
             Console.WriteLine("L'ordinateur a joué");
             playerTurn = true;
         }

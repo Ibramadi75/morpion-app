@@ -99,7 +99,6 @@ namespace MyApp{
                                         return true;
                                     }
                                     break;
-                                break;
                             }
                         break;
                         case 1: // si on est à la colonne 1
